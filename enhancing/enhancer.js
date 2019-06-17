@@ -6,7 +6,17 @@ module.exports = {
 };
 
 function succeed(item) {
-  return { ...item, enhancement: ++item.enhancement };
+  if (itemEnchancementChecker(item) === null) {
+    return { ...item }
+  } else {
+    if (item.enhancement === 20) {
+      return { ...item }
+    }
+    if (item.enhancement < 0) {
+      return { ...item, enhancement: 1 }
+    }
+    return { ...item, enhancement: ++item.enhancement };
+  }
 }
 
 function fail(item) {
@@ -31,6 +41,21 @@ function itemDurabilityChecker(item) {
       item.durability = parseInt(item.durability)
     }
     if (item.durability <= 100) {
+      return item
+    } else {
+      return item = null
+    }
+  } else {
+    return item = null
+  }
+}
+
+function itemEnchancementChecker(item) {
+  if(typeof item.enhancement === Number || String) {
+    if(typeof item.enhancement === String) {
+      item.enhancement = parseInt(item.enhancement)
+    }
+    if (item.enhancement <= 20) {
       return item
     } else {
       return item = null
