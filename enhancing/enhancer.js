@@ -44,7 +44,15 @@ function repair(item) {
 }
 
 function get(item) {
-  return { ...item };
+  if (typeof item.name !== "string" || itemEnchancementChecker(item) === null) {
+    return { ...item }
+  } else {
+    if (item.enhancement === 0) {
+      return { ...item }
+    } else {
+      return { ...item, name: `[+${item.enhancement}] ${item.name}` }
+    }
+  }
 }
 
 function itemDurabilityChecker(item) {
