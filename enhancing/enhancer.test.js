@@ -1,4 +1,4 @@
-const { repair, succeed } = require('./enhancer.js')
+const { repair, succeed, fail } = require('./enhancer.js')
 
 describe('enhancer.js', () => {
     describe('repair()', () => {
@@ -17,6 +17,15 @@ describe('enhancer.js', () => {
             expect(succeed({ enhancement: 0 }).enhancement).toBe(1)
             expect(succeed({ enhancement: 20 }).enhancement).toBe(20)
             expect(succeed({ enhancement: -10 }).enhancement).toBe(1)
+            expect(succeed({ enhancement: "-10" }).enhancement).toBe(1)
+        })
+    })
+
+    describe('fail()', () => {
+        it('handles an items enhancement failure', () => {
+            expect(fail({ enhancement: 10, durability: 100 }).durability).toBe(95)
+            expect(fail({ enhancement: 15, durability: 100 }).durability).toBe(90)
+            expect(fail({ enhancement: 17, durability: 100 })).toEqual({ durability: 90, enhancement: 16 })
         })
     })
 })
