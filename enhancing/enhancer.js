@@ -6,7 +6,7 @@ module.exports = {
 };
 
 function succeed(item) {
-  return { ...item };
+  return { ...item, enhancement: ++item.enhancement };
 }
 
 function fail(item) {
@@ -14,8 +14,7 @@ function fail(item) {
 }
 
 function repair(item) {
-  const checkedItem = itemDurabilityChecker(item)
-  if (checkedItem === null) {
+  if (itemDurabilityChecker(item) === null) {
     return { ...item }
   } else {
     return { ...item, durability: 100 };
@@ -39,5 +38,4 @@ function itemDurabilityChecker(item) {
   } else {
     return item = null
   }
-  
 }
