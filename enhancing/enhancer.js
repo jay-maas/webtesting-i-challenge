@@ -20,15 +20,18 @@ function succeed(item) {
 }
 
 function fail(item) {
-  console.log(item)
-  if (item.enhancement < 15) {
-    return { ...item, durability: item.durability - 5 }
-  }
-  if (item.enhancement >= 15) {
-    if (item.enhancement >= 16) {
-      return { ...item, durability: item.durability -  10, enhancement: item.enhancement-1}
+  if (itemDurabilityChecker(item) === null || itemEnchancementChecker(item) === null) {
+    return { ...item }
+  } else {
+    if (item.enhancement < 15) {
+      return { ...item, durability: item.durability - 5 }
     }
-    return { ...item, durability: item.durability -  10}
+    if (item.enhancement >= 15) {
+      if (item.enhancement >= 16) {
+        return { ...item, durability: item.durability -  10, enhancement: item.enhancement-1}
+      }
+      return { ...item, durability: item.durability -  10}
+    }
   }
 }
 
