@@ -35,7 +35,8 @@ describe('enhancer.js', () => {
     describe('get()', () => {
         it('changes item name to reflect enhancement level', () => {
             expect(get({ name: "Mighty Sword", enhancement: 5 }).name).toBe("[+5] Mighty Sword")
-            expect(get({ name: "Mighty Sword", enhancement: 0 }).name).toBe("Mighty Sword")
+            expect(get({ name: "Weak Staff", enhancement: 0 }).name).toBe("Weak Staff")
+            expect(get({ name: "Ultimate Hammer", enhancement: 20 }).name).toBe("[+20] Ultimate Hammer")
         })
     })
 })

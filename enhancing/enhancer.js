@@ -7,10 +7,10 @@ module.exports = {
 
 function succeed(item) {
   if (itemEnchancementChecker(item) === null) {
-    return { ...item }
+    return item
   } else {
     if (item.enhancement === 20) {
-      return { ...item }
+      return item
     }
     if (item.enhancement < 0) {
       return { ...item, enhancement: 1 }
@@ -21,14 +21,14 @@ function succeed(item) {
 
 function fail(item) {
   if (itemDurabilityChecker(item) === null || itemEnchancementChecker(item) === null) {
-    return { ...item }
+    return item
   } else {
     if (item.enhancement < 15) {
       return { ...item, durability: item.durability - 5 }
     }
     if (item.enhancement >= 15) {
       if (item.enhancement >= 16) {
-        return { ...item, durability: item.durability -  10, enhancement: item.enhancement-1}
+        return { ...item, durability: item.durability -  10, enhancement: item.enhancement - 1}
       }
       return { ...item, durability: item.durability -  10}
     }
@@ -37,18 +37,19 @@ function fail(item) {
 
 function repair(item) {
   if (itemDurabilityChecker(item) === null) {
-    return { ...item }
+    return item
   } else {
     return { ...item, durability: 100 };
   }
 }
 
 function get(item) {
+  itemNameChecker(item)
   if (typeof item.name !== "string" || itemEnchancementChecker(item) === null) {
-    return { ...item }
+    return item
   } else {
     if (item.enhancement === 0) {
-      return { ...item }
+      return item
     } else {
       return { ...item, name: `[+${item.enhancement}] ${item.name}` }
     }
@@ -56,8 +57,8 @@ function get(item) {
 }
 
 function itemDurabilityChecker(item) {
-  if(typeof item.durability === Number || String) {
-    if(typeof item.durability === String) {
+  if(typeof item.durability === "number" || "string") {
+    if(typeof item.durability === "string") {
       item.durability = parseInt(item.durability)
     }
     if (item.durability <= 100) {
@@ -71,8 +72,8 @@ function itemDurabilityChecker(item) {
 }
 
 function itemEnchancementChecker(item) {
-  if(typeof item.enhancement === Number || String) {
-    if(typeof item.enhancement === String) {
+  if (typeof item.enhancement === "number" || "string") {
+    if(typeof item.enhancement === "string") {
       item.enhancement = parseInt(item.enhancement)
     }
     if (item.enhancement <= 20) {
@@ -82,5 +83,11 @@ function itemEnchancementChecker(item) {
     }
   } else {
     return item = null
+  }
+}
+
+function itemNameChecker(item) {
+  if (typeof item.name === "string") {
+    return item
   }
 }
