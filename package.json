@@ -1,0 +1,22 @@
+{
+  "name": "webtesting-i-challenge",
+  "version": "1.0.0",
+  "description": "Daily project to practice testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jay-maas/webtesting-i-challenge.git"
+  },
+  "author": "Jay Maas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jay-maas/webtesting-i-challenge/issues"
+  },
+  "homepage": "https://github.com/jay-maas/webtesting-i-challenge#readme",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
+}
